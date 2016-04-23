@@ -1,0 +1,21 @@
+WATER WORKS FRAME
+
+A plaform based on displaying to the user whatever fits into the good ol' MVC frame.
+
+Start with editing RowDataModel to whatever you want to represent.
+
+/models/ -> models go here
+/pages/ -> pages go here
+/controllers/ -> controllers go here, notable controllers include action and page
+/templates/ -> templates go here
+/views/ -> views go here
+
+/controllers/action.php -> where actions go
+/controllers/page.php -> where new pages go
+
+TO EDIT DATABASE:
+sqlite3 db/example.sqlite
+.schema
+
+To create a new user:
+http://example/create/user

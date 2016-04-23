@@ -1,0 +1,163 @@
+
+#header{
+  padding-left: 120px;
+  padding-right: 100px;
+  padding-top: 15px;
+}
+
+#nav h1 {
+text-shadow: 10px 10px 5px #888888;
+}
+#
+textarea{
+    border: 3px solid #cccccc;
+}
+
+#footer{
+box-shadow: 10px 10px 5px #888888;
+clear:both;
+margin:10px;
+background-color: white;
+margin-left:110px;
+margin-right:33px;
+border: 4px double #000;
+}
+
+#footer #js-about{
+float: left;
+margin: 4px;
+font-size: 10px;
+}
+#contact-admin {
+   margin-left: 490px;
+   font-size: 26px;
+}
+.hidden{
+display:none;
+}
+#wen-pan {
+ height: 800px;
+}
+
+.spacer2{
+ clear: both:
+ width: 100%;
+ height:73px;
+}
+
+.spacer{
+width:100%;
+clear:both;
+height:0px;
+}
+.spacer-small{
+width:100%;
+clear:both;
+height:1px;
+}
+
+#subnav {
+  height: auto;
+  margin-left: 8px;
+}
+
+.action-button{
+text-decoration: none; 
+color: #483D8B;
+}
+
+
+ .action-button:visited {
+color: #483D8B;
+text-color: red;
+}
+
+ a:visited {
+ color: black;
+}
+ a{
+ text-decoration: none; 
+ color: black;
+}
+
+
+.subnav-button{
+  box-shadow: 10px 10px 5px #888888;
+  background-color: #A3ddf0;
+  font-weight: bold;
+  font-size: 20px;
+  width:227px;
+  text-align: center;
+  border:  solid 1px black;
+  padding: 10px;
+  margin: 10px;
+  float: left;
+
+}
+
+#nav img{
+  width: 450px;
+}
+
+#all-content{
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 1480px;
+  margin-top: 20px;
+}
+
+body{
+  background-color:#FFFFFF;
+}
+.table{
+}
+.table-header td{
+ text-align: center;
+ padding: 5px;
+ border-bottom: 1px solid black;
+}
+#order_page table {
+border-collapse:collapse;
+}
+#expense_page table {
+border-collapse:collapse;
+}
+
+#order-content{
+   clear:both;
+  overflow: auto;
+  height: 100%;
+  position: relative;
+  border: 4px double  #000000;
+  background-color: white;
+  text-align:center;
+  padding-top: 8px;
+  width:1130px;
+
+}
+#default-content{
+  box-shadow: 10px 10px 5px #888888;
+  clear:both;
+  overflow: auto;
+  height: 100%;
+  position: relative;
+  border: 4px double  #000000;
+  background-color: white;
+  text-align:center;
+  padding-top: 8px;
+  margin-left: 110px;
+  margin-right:80px;
+  width:1290px;
+}
+
+.create-link{
+     width :100%;
+     height:100%;
+     display: block;
+     margin-top: 16px;
+}
+.create-button {
+     height:35px;
+     border:solid 1px #000;
+     background-color: #faaf99;
+}

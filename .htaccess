@@ -1,0 +1,14 @@
+
+RewriteEngine on 
+RewriteBase  /
+RewriteCond %{REQUEST_FILENAME} !\.css
+RewriteCond %{REQUEST_FILENAME} !\.js
+RewriteCond %{REQUEST_FILENAME} !\.jpg
+RewriteCond %{REQUEST_FILENAME} !\.jpeg
+RewriteCond %{REQUEST_FILENAME} !\.png
+RewriteCond %{REQUEST_FILENAME} !\.gif
+RewriteCond %{REQUEST_FILENAME} !\.ico
+RewriteCond %{REQUEST_FILENAME} !\.mp4
+RewriteRule ^(.*)$ index.php [L]
+# map requests to index.php and append
+                                      # as a query string
