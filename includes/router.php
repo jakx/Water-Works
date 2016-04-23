@@ -80,22 +80,8 @@ class Router{
 
    public function isPathAuthorized(){
    $path = $this->path;
-     if($path[1] == 'model') {
-       $page = $this->getPage();
-       $action = $this->getAction();
-       $model = $this->getModel();
-       $authorized = false; 
-       $myMap = array(
-                                'order' => array('edit', 'create' ,'deleteModel', 'saveModel'),
-                                'user' => array('create', 'saveModel') ,
-                                'expense' => array('edit', 'createModel','deleteModel', 'save') 
-       );
-       if ( in_array( $action  ,$myMap[$model] ) )
-                 return true;
-       else 
-                 return false;
-     } 
-     else if($this->isPage()){
+ 
+     if($this->isPage()){
         return $this->isPageAuthorized();
      }
      else if ($this->isAction()){

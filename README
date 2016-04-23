@@ -9,6 +9,7 @@ Start with editing RowDataModel to whatever you want to represent.
 /controllers/ -> controllers go here, notable controllers include action and page
 /templates/ -> templates go here
 /views/ -> views go here
+All Models, Views and Controllers should be named the same thing for example: example.php
 
 /controllers/action.php -> where actions go
 /controllers/page.php -> where new pages go
