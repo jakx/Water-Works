@@ -36,7 +36,6 @@ class Router{
         $pdoResult= $statement->execute();
         while($result = $pdoResult->fetchArray()){
             $countUsers =$result['numberOfUsers'];  
-            echo $countUsers;
             return $countUsers;
        }
       return 0;
