@@ -5,12 +5,19 @@ class Router{
   public $path; 
   public $pages;
   public $actions;
+  public $myMap;
 
 
     public function __construct($path, $pages, $actions) {
        $this->path = $path;
        $this->pages = $pages;
        $this->actions = $actions;
+       $this->myMap = array(
+                                'page' => array('home' => false, 'signin' => false,'about'=> false, 'contact' =>false),
+                                'action' => array('login' => false, 'logout' => false),
+                                'example' => array('edit' => true, 'create' => true,'deleteModel'=> true, 'saveModel' =>true),
+                                'user' => array('create' =>false, 'saveModel' =>'true', 'edit' => true) 
+       );
    }
 
     public function __construct_2($rules) {
@@ -22,27 +29,28 @@ class Router{
       return true; 
     return false;
    } 
-
-    public function userLoggedIn(){
-     return $_SESSION['loggedin'];
-     } 
-
-    public function isNotLoggedIn(){
-      return $this->isLoggedIn() ? "false" : "true";
-    }
-   public function numberOfUsers($db) {
-         $sql = "SELECT count(*) as numberOfUsers FROM users ;";
-        $statement = $db->prepare($sql);
-        $pdoResult= $statement->execute();
-        while($result = $pdoResult->fetchArray()){
-            $countUsers =$result['numberOfUsers'];  
-            return $countUsers;
-       }
-      return 0;
+    public function isNotLoggedIn(){ 
+      return $this->isLoggedIn() ? "false" : "true"; 
+    } 
+   public function numberOfUsers($db) { 
+         $sql = "SELECT count(*) as numberOfUsers FROM users ;"; 
+        $statement = $db->prepare($sql); 
+        $pdoResult= $statement->execute(); 
+        while($result = $pdoResult->fetchArray()){ 
+            $countUsers =$result['numberOfUsers'];   
+            return $countUsers; 
+       } 
+      return 0; 
 }
 
+
+    public function userLoggedIn(){
+   return $_SESSION['loggedin'];
+   } 
+ 
    public function isAction(){
     $action = $this->action();
+
     $controllerActions = get_class_methods(ActionController);
     if(in_array($action,$controllerActions)){
      return true; 
@@ -50,12 +58,11 @@ class Router{
    }
 
    public function getAction(){
-       return $this->action();
+       return $this->action()  ;
    }
    public function action(){
     $path = $this->path;
-   // $action = ($path[2] ? $path[2] : $path[1]);
-    return $path[1];
+    $action = (strlen($path[2]) ==0 ? $path[1] : $path[1]);
     return $action;
    }
 
@@ -79,16 +86,41 @@ class Router{
 
    public function isPathAuthorized(){
    $path = $this->path;
- 
+   $myMap = $this->myMap;
+
      if($this->isPage()){
-        return $this->isPageAuthorized();
+   $action = $this->action();
+       $page = $this->getPage();
+ //      $pageAuthAnswer = $this->isPageAuthorized();
+       $isLoggedIn = $this->isLoggedIn();
+       if($myMap['page'][$page] == true && $isLoggedIn) {
+            return true;
+       }
+       else if($myMap['page'][$page] == false && !$isLoggedIn) {
+            return true;
+      }
+       else {
+          return $myMap['action'][$action] ? false : true;
+       }
+
      }
      else if ($this->isAction()){
-        return $this->isActionAuthorized();
-     }
-     else
-         return false;
+   $action = $this->action();
+//       $actionAuthAnswer = $this->isActionAuthorized();
+       $isLoggedIn = $this->isLoggedIn();
+       $action = $this->getAction();
+       $model = $this->getModel();
+       if($myMap[$model][$action] == true && $isLoggedIn) {
+            return true;
+       }
+       else if($myMap[$model][$action] == false ) { //no permissions
+               return true;
+      }
+          $mapResult = $myMap['action'][$action]  ==true ? true: false;
+          return $mapResult;
+      }
    }
+
 
   public function isPageAuthorized(){
      $pages = get_class_methods(PageController);
@@ -107,6 +139,7 @@ class Router{
 
   }
 
+/*
   public function isActionAuthorized(){
      $actions = get_class_methods(ActionController);
      foreach($actions as $action) { 
@@ -121,7 +154,7 @@ class Router{
        };
     }
    return false;
-
+*/
 
 /*
        if(strpos($action, "__construct") + 1){ //strings start at 0
@@ -132,9 +165,9 @@ class Router{
     }
    return false;
 
-*/
   }
 
+*/
 
    public function getPage(){
     $path = $this->path;
